@@ -1,3 +1,4 @@
+/* trailing blanks, tabs ? */
 #include <stdio.h>
 
 #define N_COLUMN 5 /* character limit for breaking column */

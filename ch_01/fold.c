@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-#define N_COLUMN 25 /* character limit for breaking column */
+#define N_COLUMN 5 /* character limit for breaking column */
 #define TAB_SIZE 8 /* how many blanks make a tab */
 #define MAX_SIZE 500 /* maximum input size */
 
@@ -35,6 +35,8 @@ int main(void)
 				output[out_cnt] = input[in_cnt];
 			output[out_cnt] = '\n';
 			out_cnt++;
+			if(input[in_cnt] == ' ')
+				in_cnt++;
 			column = blank + N_COLUMN + 1;
 		}
 		//is this necessary? check GDB
@@ -88,7 +90,7 @@ int findBlank(char array[], int size, int column)
 	/* >= or just > ? */
 	while(column >= 0)
 	{
-	if(array[column] == '\n')
+	if(array[column] == ' ')
         return column;
 	column--;
 	}	

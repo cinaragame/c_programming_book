@@ -1,4 +1,6 @@
-/* trailing blanks, tabs ? */
+
+/* !!!!!!! trailing blanks, tabs ? !!!!!!! */
+
 #include <stdio.h>
 
 #define N_COLUMN 20 /* character limit for breaking column */
@@ -15,13 +17,13 @@ character that occurs before N_COLUMN
  */
 int main(void)
 {
-	int i;
-	int in_cnt, out_cnt;
-	int in_size;
-	int column, blank;
-	char input[MAX_SIZE], output[MAX_SIZE];
+	int 	i;					/* for output table printing */
+	int 	in_cnt, out_cnt;	/* input and output array char-counters */
+	int 	in_size;			/* input size */
+	int		column, blank;		/* position of last possible char (column) and closest blank in each iteration */
+	char	input[MAX_SIZE];		/* input string */
+	char 	output[MAX_SIZE];	/* output string */
 
-// !!!!!!!!!!!!!!! have to insert tab size in questions
 	while(in_size = getLine(input, MAX_SIZE))
 	{
 		/* guard clause: excludes final '\n' from input size */
@@ -35,18 +37,9 @@ int main(void)
 		/* && while we haven't finished reading the input array */
 		while(out_cnt < MAX_SIZE-1 && in_cnt < in_size)
 		{
-			/* blank for current line size smaller or equal max column */
-			/* makes filling up until the n-th column with a visible char possible */
-			/* useful for limit case example a 20 char + new line ("This is a short text\n") in max 20 column output */
-			/*if((out_cnt + N_COLUMN) < column)//((in_size - out_cnt) <= N_COLUMN) // what if out_cnt + N_COLUMN < column
-				blank = in_size+1; /* puts blank after last valid char */
-			/* else */
-			/*else
-			{*/
-				blank = findBlank(input, in_size, column);
+			blank = findBlank(input, in_size, column);
 				if(blank < out_cnt)
 					blank = column;
-			//}
 			/* copy from out_cnt until blank */
 			for( ; out_cnt < blank; in_cnt++, out_cnt++)
 				output[out_cnt] = input[in_cnt];
@@ -54,7 +47,7 @@ int main(void)
 			out_cnt++;
 			if(input[in_cnt] == ' ')
 				in_cnt++;
-			column = blank + N_COLUMN;// + 1;
+			column = blank + N_COLUMN + 1;
 		}
 		//is this necessary? check GDB
 		output[out_cnt] = '\0';
@@ -62,6 +55,7 @@ int main(void)
 
 		/**** OUTPUT ****/
 		/* printing table */
+		printf("\n");
 		for(i = 0; i < N_COLUMN; i++)
 			printf("%d", (i+1)%10);
 		/* printing resulting output */
@@ -84,10 +78,10 @@ int findBlank(char array[], int size, int column)
 	/* >= or just > ? */
 	while(column >= 0)
 	{
-	if(array[column] == ' ')
+	if(array[column] == ' ' || array[column] == '\n')
         return column;
 	column--;
-	}	
+	}
     
 	return -1;
 }

@@ -1,0 +1,36 @@
+/* Test Case 1: Double quote with comment-like syntax inside */
+Input:  char *s = "this is /* not a comment */"; // real comment
+
+Expected Output:
+char *s = "this is /* not a comment */";
+
+Actual Output:
+char *s = "this is ;
+
+/* Test Case 4: Double slash inside string */
+Input:  char *url = "http://example.com"; // real comment
+
+Expected Output:
+char *url = "http://example.com";
+
+Actual Output:
+char *url = "http:;
+
+/* Test Case 5: Multiple strings with comment-like patterns */
+Input:  printf("/* test */"); printf("// test"); /* real comment */
+
+Expected Output:
+printf("/* test */"); printf("// test");
+
+Actual Output:
+printf("");  printf("");
+
+/* Test Case 6: Backslash-escaped characters */
+Input:  char *s = "backslash \\ inside"; // comment
+
+Expected Output:
+char *s = "backslash \\ inside";
+
+Actual Output:
+char *s = "backslash \\ inside";  (might work by luck, depending on escaping)
+

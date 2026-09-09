@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-#define MAX_SIZE		1000/* input array maximum char size */
+#define MAX_SIZE		1000000/* input array maximum char size */
 #define IN_C			1	/* identifies that we are inside C-type comment */
 #define IN_CPP			2	/* identifies that we are inside CPP-type comment */
 #define OUT				0	/* identifies that we are outside a comment */
